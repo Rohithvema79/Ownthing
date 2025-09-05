@@ -1,0 +1,46 @@
+package com.klef;
+
+import com.klef.Vehicle;
+import com.klef.VehicleService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@CrossOrigin
+@RequestMapping("/api/vehicles")
+public class VehicleController {
+
+    private final VehicleService vehicleService;
+
+    public VehicleController(VehicleService vehicleService) {
+        this.vehicleService = vehicleService;
+    }
+
+    @GetMapping()
+    public List<Vehicle> getAllVehicles() {
+        return vehicleService.getAllVehicles();
+    }
+
+    @GetMapping("/{id}")
+    public Vehicle getVehicleById(@PathVariable Long id) {
+        return vehicleService.getVehicleById(id)
+                .orElseThrow(() -> new RuntimeException("Vehicle not found with id " + id));
+    }
+
+    @PostMapping
+    public Vehicle addVehicle(@RequestBody Vehicle vehicle) {
+        return vehicleService.addVehicle(vehicle);
+    }
+
+    @PutMapping("/{id}")
+    public Vehicle updateVehicle(@PathVariable Long id, @RequestBody Vehicle vehicleDetails) {
+        return vehicleService.updateVehicle(id, vehicleDetails);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteVehicle(@PathVariable Long id) {
+        vehicleService.deleteVehicle(id);
+        return "Vehicle deleted with id " + id;
+    }
+}
