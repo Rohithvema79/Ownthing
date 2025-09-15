@@ -11,6 +11,7 @@
 	<groupId>com.klef</groupId>
 	<artifactId>Vehicles</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>Vehicles</name>
 	<description>BackEnd For Vehicles</description>
 	<url/>
@@ -58,6 +59,8 @@
 	</dependencies>
 
 	<build>
+	<finalName>
+	Rohith</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
